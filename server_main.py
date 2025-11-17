@@ -1,27 +1,3 @@
-# # Create the file (content above)
-# git add server_main.py
-# git commit -m "Add server main entry point for Render deployment"
-# git push
-# ```
-
-# ### **2. Update requirements if using Gunicorn**
-# Add to `0.0.a_requirements_intent_manifest.txt`:
-# ```
-# gunicorn==21.2.0
-# ```
-
-# ### **3. Create Render Web Service**
-# - Go to https://render.com
-# - New > Web Service
-# - Connect your GitHub repo: `Sensei-Intent-Tensor/dynamic_marketing_pro`
-
-# ### **4. Configure Service**
-# ```
-# Name: dynamic-marketing-pro
-# Environment: Python 3
-# Region: (Choose closest to your users)
-# Branch: main
-
 #!/usr/bin/env python3
 """
 server_main.py
@@ -33,23 +9,17 @@ Diamond Standard Architecture Production Server
 import os
 import sys
 
-# Add current directory to path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-# Import Flask and CORS
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 
-# Import all the singleton accessor functions
-# Note: Importing directly from files in folders with dots requires this approach
 def get_all_engine_singletons():
     """Get all engine singletons by importing modules"""
     
-    # Import from 0.0 folder
     exec(open('0.0_folderCoreShellRuntime/0.0.d_fileAuthenticationIntentGatekeeper.py').read(), globals())
     exec(open('0.0_folderCoreShellRuntime/0.0.e_fileSubscriptionValidatorIntentFirewall.py').read(), globals())
     
-    # Import from 2.0 folder
     exec(open('2.0_folderGenerationEngineCore/2.0.a_fileFrameGeneratorIntentEngine.py').read(), globals())
     exec(open('2.0_folderGenerationEngineCore/2.0.b_fileColorResolverPrecedenceEngine.py').read(), globals())
     exec(open('2.0_folderGenerationEngineCore/2.0.c_fileTextBoundaryAutoFitEngine.py').read(), globals())
@@ -57,11 +27,9 @@ def get_all_engine_singletons():
     exec(open('2.0_folderGenerationEngineCore/2.0.e_fileLayerOrchestratorIntentPipeline.py').read(), globals())
     exec(open('2.0_folderGenerationEngineCore/2.0.f_fileParameterWritableValidatorIntentGate.py').read(), globals())
     
-    # Import from 3.0 folder
     exec(open('3.0_folderDynamicLibraryLoader/3.0.a_fileDynamicLibraryIndexer.py').read(), globals())
     exec(open('3.0_folderDynamicLibraryLoader/3.0.b_fileAssetPathResolver.py').read(), globals())
     
-    # Import from 4.0 folder
     exec(open('4.0_folderServerIntentDispatcher/4.0.b_fileParameterParserIntentResolver.py').read(), globals())
     exec(open('4.0_folderServerIntentDispatcher/4.0.c_fileGIFCompositorOutputEngine.py').read(), globals())
     
@@ -80,15 +48,12 @@ def get_all_engine_singletons():
     }
 
 
-# Initialize Flask app
 app = Flask(__name__)
 CORS(app)
 
-# Load all engines
 print("[SERVER] Loading all engines...")
 engines = get_all_engine_singletons()
 
-# Create asset resolver
 engines['asset_resolver'] = create_asset_path_resolver(engines['library_indexer'])
 
 print("[SERVER] All engines loaded successfully")
@@ -109,7 +74,6 @@ def generate():
     """Main generation endpoint"""
     from datetime import datetime
     
-    # Authentication
     auth_token = request.headers.get('Authorization', '').replace('Bearer ', '')
     auth_result = engines['auth_gatekeeper'].validate_authentication_token_intent(
         auth_token=auth_token,
@@ -119,10 +83,8 @@ def generate():
     if not auth_result['authenticated']:
         return jsonify({'error': 'AUTHENTICATION_FAILED'}), 401
     
-    # Get parameters
     raw_params = dict(request.args)
     
-    # Validate parameters
     validation = engines['parameter_validator'].validate_parameters_as_writable_for_generation_intent(
         raw_parameters=raw_params,
         user_id='test_user'
@@ -131,12 +93,10 @@ def generate():
     if not validation['all_parameters_writable']:
         return jsonify({'error': 'INVALID_PARAMETERS'}), 400
     
-    # Parse parameters
     parsed = engines['parameter_parser'].parse_parameters_for_generation_intent(
         writable_parameters=validation['writable_parameters']
     )
     
-    # Generate frames
     frames = []
     count = parsed.get('count', 3)
     
@@ -176,7 +136,6 @@ def generate():
         
         frames.append(complete)
     
-    # Compose GIF
     gif = engines['gif_compositor'].compose_gif_from_frames_intent(
         frames=frames,
         output_format='gif',
@@ -190,17 +149,3 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     print(f"[SERVER] Starting on port {port}")
     app.run(host='0.0.0.0', port=port, debug=False)
-```
-
----
-
-## 🎯 **YOUR EXACT COMMANDS FOR RENDER**
-
-### **Build Command:**
-```
-apt-get update && apt-get install -y libcairo2-dev && pip install -r 0.0.a_requirements_intent_manifest.txt
-```
-
-### **Start Command:**
-```
-python server_main.py
