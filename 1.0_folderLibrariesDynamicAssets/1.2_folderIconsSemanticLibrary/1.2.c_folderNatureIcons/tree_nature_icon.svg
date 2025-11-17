@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Tree Nature Icon - Growth/Stability/Roots/Nature Intent -->
+  <defs>
+    <metadata>
+      <intent_glyph>tree_nature_icon</intent_glyph>
+      <semantic_tags>growth,stability,roots,foundation,nature,longevity,environmental</semantic_tags>
+      <optimal_industries>environmental,sustainability,long_term_growth,foundations,natural</optimal_industries>
+      <asset_version>1.0.0</asset_version>
+    </metadata>
+  </defs>
+  
+  <!-- Tree trunk -->
+  <rect x="28" y="32" width="8" height="24" 
+        fill="currentColor" 
+        opacity="0.8"
+        rx="1"/>
+  
+  <!-- Tree crown - bottom layer -->
+  <circle cx="32" cy="28" r="12" 
+          fill="currentColor" 
+          opacity="0.7"/>
+  
+  <!-- Tree crown - middle layer -->
+  <circle cx="32" cy="22" r="10" 
+          fill="currentColor" 
+          opacity="0.8"/>
+  
+  <!-- Tree crown - top layer -->
+  <circle cx="32" cy="16" r="8" 
+          fill="currentColor" 
+          opacity="0.9"/>
+  
+  <!-- Ground line -->
+  <line x1="16" y1="56" x2="48" y2="56" 
+        stroke="currentColor" 
+        stroke-width="2" 
+        opacity="0.6"/>
+  
+  <!-- Roots left -->
+  <path d="M 28 56 
+           C 24 58 20 60 16 56" 
+        fill="none" 
+        stroke="currentColor" 
+        stroke-width="2" 
+        opacity="0.5"/>
+  
+  <!-- Roots right -->
+  <path d="M 36 56 
+           C 40 58 44 60 48 56" 
+        fill="none" 
+        stroke="currentColor" 
+        stroke-width="2" 
+        opacity="0.5"/>
+</svg>
