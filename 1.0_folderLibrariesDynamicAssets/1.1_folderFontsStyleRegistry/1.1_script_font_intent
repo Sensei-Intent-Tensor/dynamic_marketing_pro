@@ -1,0 +1,33 @@
+{
+  "font_intent_glyph_key": "script_font_intent",
+  "font_family_primary": "Brush Script MT, cursive",
+  "font_family_fallback": "Lucida Handwriting, cursive",
+  "font_weight_value": "normal",
+  "font_weight_numeric": 400,
+  "letter_spacing_value": "1px",
+  "text_transform": "none",
+  "line_height_multiplier": 1.6,
+  "rendering_hints": {
+    "antialiasing": "antialiased",
+    "webkit_font_smoothing": "antialiased",
+    "moz_osx_font_smoothing": "grayscale"
+  },
+  "optimal_use_cases": [
+    "creative_agencies",
+    "artistic_brands",
+    "personal_branding",
+    "invitations",
+    "boutique_businesses",
+    "handcrafted_products"
+  ],
+  "readability_minimum_size_px": 20,
+  "readability_maximum_size_px": 60,
+  "compatible_geometries": ["round", "mixed"],
+  "brand_personality_tags": ["creative", "personal", "artistic", "friendly", "approachable"],
+  "accessibility_wcag_level": "AA",
+  "metadata": {
+    "created_timestamp": "2025-11-14T00:00:00Z",
+    "version": "1.0.0",
+    "asset_type": "FONT_STYLE_DEFINITION"
+  }
+}
