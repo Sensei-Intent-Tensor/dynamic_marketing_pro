@@ -1,1 +1,31 @@
-
+{
+  "font_intent_glyph_key": "bold_font_intent",
+  "font_family_primary": "Arial Black, sans-serif",
+  "font_family_fallback": "Helvetica, Arial, sans-serif",
+  "font_weight_value": "bold",
+  "font_weight_numeric": 700,
+  "letter_spacing_value": "2px",
+  "text_transform": "none",
+  "line_height_multiplier": 1.2,
+  "rendering_hints": {
+    "antialiasing": "antialiased",
+    "webkit_font_smoothing": "antialiased",
+    "moz_osx_font_smoothing": "grayscale"
+  },
+  "optimal_use_cases": [
+    "headlines",
+    "company_names",
+    "call_to_action_text",
+    "impact_statements"
+  ],
+  "readability_minimum_size_px": 14,
+  "readability_maximum_size_px": 72,
+  "compatible_geometries": ["sharp", "mixed", "minimal"],
+  "brand_personality_tags": ["bold", "confident", "direct", "modern"],
+  "accessibility_wcag_level": "AAA",
+  "metadata": {
+    "created_timestamp": "2025-11-14T00:00:00Z",
+    "version": "1.0.0",
+    "asset_type": "FONT_STYLE_DEFINITION"
+  }
+}
