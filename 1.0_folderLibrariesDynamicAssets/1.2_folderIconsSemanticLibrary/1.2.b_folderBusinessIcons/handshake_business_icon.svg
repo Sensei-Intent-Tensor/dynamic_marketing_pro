@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Handshake Business Icon - Partnership/Agreement/Trust Intent -->
+  <defs>
+    <metadata>
+      <intent_glyph>handshake_business_icon</intent_glyph>
+      <semantic_tags>partnership,agreement,trust,collaboration,deal,relationship</semantic_tags>
+      <optimal_industries>partnerships,b2b,networking,collaboration,relationship_building</optimal_industries>
+      <asset_version>1.0.0</asset_version>
+    </metadata>
+  </defs>
+  
+  <!-- Left arm -->
+  <path d="M 8 36 L 20 32 L 28 32" 
+        fill="none" 
+        stroke="currentColor" 
+        stroke-width="4" 
+        opacity="0.8"/>
+  
+  <!-- Left hand -->
+  <path d="M 24 28 L 28 32 L 28 36 L 24 40" 
+        fill="currentColor" 
+        opacity="0.9"/>
+  
+  <!-- Right arm -->
+  <path d="M 56 36 L 44 32 L 36 32" 
+        fill="none" 
+        stroke="currentColor" 
+        stroke-width="4" 
+        opacity="0.8"/>
+  
+  <!-- Right hand -->
+  <path d="M 40 28 L 36 32 L 36 36 L 40 40" 
+        fill="currentColor" 
+        opacity="0.9"/>
+  
+  <!-- Joined hands center -->
+  <rect x="28" y="30" width="8" height="8" 
+        fill="currentColor" 
+        opacity="1.0"
+        rx="1"/>
+  
+  <!-- Connection emphasis -->
+  <circle cx="32" cy="34" r="2" 
+          fill="white" 
+          opacity="0.6"/>
+</svg>
