@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Elegant Corner Decoration - Flowing/Luxury/Classical Accent -->
+  <defs>
+    <metadata>
+      <intent_glyph>elegant_corner_decoration</intent_glyph>
+      <semantic_tags>elegant,luxury,classical,flowing,ornate,refined</semantic_tags>
+      <placement_recommendation>corners,frame_accents</placement_recommendation>
+      <compatible_geometries>round,minimal,mixed</compatible_geometries>
+      <asset_version>1.0.0</asset_version>
+    </metadata>
+  </defs>
+  
+  <!-- Main flowing curve -->
+  <path d="M 8 32 
+           Q 8 16 16 8 
+           L 32 8 
+           Q 24 16 24 24" 
+        fill="none" 
+        stroke="currentColor" 
+        stroke-width="2" 
+        opacity="0.8"/>
+  
+  <!-- Inner accent curve -->
+  <path d="M 12 28 
+           Q 12 20 20 12 
+           L 28 12" 
+        fill="none" 
+        stroke="currentColor" 
+        stroke-width="1" 
+        opacity="0.6"/>
+  
+  <!-- Decorative flourish -->
+  <path d="M 24 24 
+           Q 28 22 32 24" 
+        fill="none" 
+        stroke="currentColor" 
+        stroke-width="1" 
+        opacity="0.5"/>
+  
+  <!-- Small ornamental dots -->
+  <circle cx="28" cy="16" r="1" 
+          fill="currentColor" 
+          opacity="0.6"/>
+  <circle cx="16" cy="28" r="1" 
+          fill="currentColor" 
+          opacity="0.6"/>
+</svg>
