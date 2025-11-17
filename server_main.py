@@ -4,7 +4,7 @@ server_main.py
 
 MAIN SERVER ENTRY POINT
 Diamond Standard Architecture Production Server
-WITH GOD MODE ADMIN ENDPOINT FOR TESTING
+WITH GOD MODE: AUTO (seed-based) & MANUAL (explicit asset selection)
 """
 
 import os
@@ -70,7 +70,8 @@ def home():
         'endpoints': {
             'health': '/health',
             'generate': '/generate?count=3&company=YourBrand',
-            'god_mode': '/god?count=3&company=Test&services=AI,Cloud'
+            'god_auto': '/god?count=3&company=Test&services=AI,Cloud (seed-based)',
+            'god_manual': '/god?mode=manual&count=3&company=Test&icon=sun_nature_icon&decoration=elegant_corner_decoration'
         },
         'documentation': 'https://github.com/Sensei-Intent-Tensor/dynamic_marketing_pro'
     })
@@ -89,18 +90,27 @@ def health_check():
 @app.route('/god', methods=['GET'])
 def god_mode_generate():
     """
-    GOD MODE - FULL ADMIN ACCESS
+    GOD MODE - DUAL PATH
     
-    NO AUTH REQUIRED
-    NO VALIDATION GATES
-    NO SUBSCRIPTION LIMITS
+    AUTO MODE (default): Seed-based asset selection
+    MANUAL MODE: Explicit asset selection
     
-    Direct access to generation pipeline for testing
+    AUTO Usage:
+    /god?count=5&company=Test&services=AI,Cloud&seed=12345
     
-    Usage:
-    /god?count=5&company=Test&services=AI,Cloud,Data&seed=12345&bg=blue&text=white
+    MANUAL Usage:
+    /god?mode=manual&count=3&company=Test&icon=sun_nature_icon&decoration=elegant_corner_decoration&background_gradient=diagonal_gradient_background
     
-    All parameters optional - uses intelligent defaults
+    Available Assets:
+    Icons: sun_nature_icon, tree_nature_icon, leaf_nature_icon, 
+           rocket_tech_icon, cpu_tech_icon, cloud_tech_icon,
+           chart_business_icon, briefcase_business_icon, handshake_business_icon
+    
+    Decorations: elegant_corner_decoration, tech_corner_decoration,
+                 grid_pattern_decoration, wave_pattern_decoration
+    
+    Gradients: diagonal_gradient_background, radial_gradient_background, 
+               vertical_gradient_background
     """
     from datetime import datetime
     import random
@@ -108,10 +118,11 @@ def god_mode_generate():
     print(f"[GOD MODE] Request from {request.remote_addr}")
     
     try:
-        # Get ALL parameters - no validation, no gates
         raw_params = dict(request.args)
         
-        # Parse with full power
+        # FORK POINT: Auto or Manual mode
+        mode = raw_params.get('mode', 'auto').lower()
+        
         count = int(raw_params.get('count', 3))
         company = raw_params.get('company', 'Your Company')
         services_raw = raw_params.get('services', '')
@@ -119,18 +130,30 @@ def god_mode_generate():
         
         seed = int(raw_params.get('seed', random.randint(0, 3145728)))
         
-        # Color overrides
         bg_color = raw_params.get('bg')
         text_color = raw_params.get('text')
         accent_color = raw_params.get('accent')
         
-        # Style overrides
         font_style = raw_params.get('font')
         geometry = raw_params.get('geometry')
         
-        print(f"[GOD MODE] Generating {count} frames | Company: {company} | Seed: {seed}")
+        # MANUAL MODE PARAMETERS
+        manual_icon = raw_params.get('icon')
+        manual_decoration = raw_params.get('decoration')
+        manual_gradient = raw_params.get('background_gradient')
         
-        # Build parsed parameters
+        if mode == 'manual':
+            print(f"[GOD MODE - MANUAL] Drawing from scratch")
+            print(f"[GOD MODE - MANUAL] Icon: {manual_icon}")
+            print(f"[GOD MODE - MANUAL] Decoration: {manual_decoration}")
+            print(f"[GOD MODE - MANUAL] Gradient: {manual_gradient}")
+            
+            # Validate manual assets exist
+            if manual_icon or manual_decoration or manual_gradient:
+                print(f"[GOD MODE - MANUAL] User-specified assets will override seed selection")
+        else:
+            print(f"[GOD MODE - AUTO] Seed: {seed} | Frames: {count} | Company: {company}")
+        
         parsed = {
             'base_seed': seed,
             'count': count,
@@ -141,30 +164,44 @@ def god_mode_generate():
             'color_accent': accent_color,
             'font_style': font_style,
             'geometry': geometry,
-            'random_mode': False
+            'random_mode': False,
+            'mode': mode,
+            'manual_icon': manual_icon,
+            'manual_decoration': manual_decoration,
+            'manual_gradient': manual_gradient
         }
         
-        # DIRECT GENERATION - NO GATES
         frames = []
         
         for i in range(count):
             frame_seed = seed + i
             
-            print(f"[GOD MODE] Generating frame {i+1}/{count} with seed {frame_seed}")
+            print(f"[GOD MODE] Frame {i+1}/{count} | Seed: {frame_seed} | Mode: {mode.upper()}")
             
-            # Generate frame
             frame_spec = engines['frame_generator'].generate_frame_from_seed_and_parameters_intent(
                 frame_seed=frame_seed,
                 user_parameters=parsed,
                 authenticated_user_id='GOD_MODE_ADMIN'
             )
             
-            # Resolve colors
+            # MANUAL MODE: Override asset selections
+            if mode == 'manual':
+                if manual_icon:
+                    frame_spec['resolved_parameters']['icon_selection'] = manual_icon
+                    print(f"[MANUAL OVERRIDE] Icon: {manual_icon}")
+                
+                if manual_decoration:
+                    frame_spec['resolved_parameters']['decoration_selection'] = manual_decoration
+                    print(f"[MANUAL OVERRIDE] Decoration: {manual_decoration}")
+                
+                if manual_gradient:
+                    frame_spec['resolved_parameters']['gradient_selection'] = manual_gradient
+                    print(f"[MANUAL OVERRIDE] Gradient: {manual_gradient}")
+            
             colors = engines['color_resolver'].resolve_color_scheme_with_precedence_intent(
                 resolved_parameters=frame_spec['resolved_parameters']
             )
             
-            # Calculate text layout
             text = engines['text_engine'].calculate_text_layout_with_boundaries_intent(
                 company_name=company,
                 services_list=services,
@@ -172,7 +209,6 @@ def god_mode_generate():
                 font_style=frame_spec['resolved_parameters'].get('font_style', 'bold')
             )
             
-            # Compose shapes
             shapes = engines['shape_engine'].compose_shapes_in_safe_zones_intent(
                 text_layout=text,
                 canvas_dimensions=frame_spec['base_structure'],
@@ -180,7 +216,6 @@ def god_mode_generate():
                 seed=frame_seed
             )
             
-            # Orchestrate complete frame
             complete = engines['layer_orchestrator'].orchestrate_complete_frame_generation_intent(
                 frame_specification=frame_spec,
                 color_scheme=colors,
@@ -191,9 +226,8 @@ def god_mode_generate():
             frames.append(complete)
             print(f"[GOD MODE] Frame {i+1} complete")
         
-        print(f"[GOD MODE] All frames generated, composing GIF...")
+        print(f"[GOD MODE] Composing GIF...")
         
-        # Compose GIF
         gif = engines['gif_compositor'].compose_gif_from_frames_intent(
             frames=frames,
             output_format='gif',
@@ -206,14 +240,16 @@ def god_mode_generate():
                 'details': gif
             }), 500
         
-        print(f"[GOD MODE] GIF composed successfully at {gif['output_file_path']}")
+        mode_suffix = "manual" if mode == "manual" else "auto"
+        filename = f"godmode_{mode_suffix}_{company}_{count}frames_{seed}.gif"
         
-        # Return GIF file
+        print(f"[GOD MODE] Success! File: {filename}")
+        
         return send_file(
             gif['output_file_path'],
             mimetype='image/gif',
             as_attachment=True,
-            download_name=f"godmode_{company}_{count}frames_{seed}.gif"
+            download_name=filename
         )
     
     except Exception as e:
