@@ -1,0 +1,36 @@
+{
+  "gradient_intent_glyph_key": "radial_gradient_background",
+  "gradient_type": "radial",
+  "gradient_direction": "center_outward",
+  "gradient_shape": "ellipse",
+  "color_stops": [
+    {
+      "position_percent": 0,
+      "color_placeholder": "COLOR_ACCENT",
+      "opacity": 1.0,
+      "semantic_role": "center_focus"
+    },
+    {
+      "position_percent": 100,
+      "color_placeholder": "COLOR_PRIMARY",
+      "opacity": 1.0,
+      "semantic_role": "outer_edge"
+    }
+  ],
+  "svg_definition_template": "<radialGradient id=\"bg\"><stop offset=\"0%\" stop-color=\"{COLOR_ACCENT}\" /><stop offset=\"100%\" stop-color=\"{COLOR_PRIMARY}\" /></radialGradient>",
+  "css_definition_template": "background: radial-gradient(ellipse at center, {COLOR_ACCENT} 0%, {COLOR_PRIMARY} 100%);",
+  "optimal_use_cases": [
+    "spotlight_effect",
+    "center_attention",
+    "vignette_backgrounds",
+    "energy_emanation"
+  ],
+  "visual_weight": "high",
+  "compatible_geometries": ["round", "mixed"],
+  "brand_personality_tags": ["dynamic", "focal", "energetic", "attention_grabbing"],
+  "metadata": {
+    "created_timestamp": "2025-11-14T00:00:00Z",
+    "version": "1.0.0",
+    "asset_type": "GRADIENT_BACKGROUND_DEFINITION"
+  }
+}
