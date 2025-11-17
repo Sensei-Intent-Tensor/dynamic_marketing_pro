@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Cloud Tech Icon - Cloud Computing/Storage Intent -->
+  <defs>
+    <metadata>
+      <intent_glyph>cloud_tech_icon</intent_glyph>
+      <semantic_tags>cloud,storage,saas,infrastructure,scalability,remote</semantic_tags>
+      <optimal_industries>cloud,saas,storage,infrastructure,remote_services</optimal_industries>
+      <asset_version>1.0.0</asset_version>
+    </metadata>
+  </defs>
+  
+  <!-- Cloud shape -->
+  <path d="M 48 32 
+           C 48 28 45 24 40 24 
+           C 40 18 35 14 28 14 
+           C 21 14 16 18 16 24 
+           C 11 24 8 28 8 32 
+           C 8 36 11 40 16 40 
+           L 48 40 
+           C 53 40 56 36 56 32 
+           C 56 28 53 24 48 24 
+           Z" 
+        fill="currentColor" 
+        opacity="0.9"/>
+  
+  <!-- Inner detail line -->
+  <path d="M 20 32 
+           C 20 30 22 28 24 28 
+           L 44 28 
+           C 46 28 48 30 48 32" 
+        fill="none" 
+        stroke="white" 
+        stroke-width="1" 
+        opacity="0.4"/>
+</svg>
