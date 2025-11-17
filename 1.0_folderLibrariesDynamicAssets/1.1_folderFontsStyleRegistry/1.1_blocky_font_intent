@@ -1,0 +1,32 @@
+{
+  "font_intent_glyph_key": "blocky_font_intent",
+  "font_family_primary": "Impact, sans-serif",
+  "font_family_fallback": "Arial Black, Helvetica, sans-serif",
+  "font_weight_value": "bold",
+  "font_weight_numeric": 900,
+  "letter_spacing_value": "0px",
+  "text_transform": "uppercase",
+  "line_height_multiplier": 1.1,
+  "rendering_hints": {
+    "antialiasing": "antialiased",
+    "webkit_font_smoothing": "antialiased",
+    "moz_osx_font_smoothing": "grayscale"
+  },
+  "optimal_use_cases": [
+    "sports_brands",
+    "energy_drinks",
+    "action_campaigns",
+    "bold_statements",
+    "attention_grabbing_headlines"
+  ],
+  "readability_minimum_size_px": 18,
+  "readability_maximum_size_px": 96,
+  "compatible_geometries": ["sharp", "mixed"],
+  "brand_personality_tags": ["powerful", "bold", "energetic", "aggressive", "attention_grabbing"],
+  "accessibility_wcag_level": "AA",
+  "metadata": {
+    "created_timestamp": "2025-11-14T00:00:00Z",
+    "version": "1.0.0",
+    "asset_type": "FONT_STYLE_DEFINITION"
+  }
+}
