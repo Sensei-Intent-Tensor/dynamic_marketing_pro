@@ -1,0 +1,36 @@
+{
+  "gradient_intent_glyph_key": "vertical_gradient_background",
+  "gradient_type": "linear",
+  "gradient_direction": "vertical",
+  "gradient_angle_degrees": 180,
+  "color_stops": [
+    {
+      "position_percent": 0,
+      "color_placeholder": "COLOR_PRIMARY",
+      "opacity": 1.0,
+      "semantic_role": "top_anchor"
+    },
+    {
+      "position_percent": 100,
+      "color_placeholder": "COLOR_ACCENT",
+      "opacity": 1.0,
+      "semantic_role": "bottom_anchor"
+    }
+  ],
+  "svg_definition_template": "<linearGradient id=\"bg\" x1=\"0%\" y1=\"0%\" x2=\"0%\" y2=\"100%\"><stop offset=\"0%\" stop-color=\"{COLOR_PRIMARY}\" /><stop offset=\"100%\" stop-color=\"{COLOR_ACCENT}\" /></linearGradient>",
+  "css_definition_template": "background: linear-gradient(180deg, {COLOR_PRIMARY} 0%, {COLOR_ACCENT} 100%);",
+  "optimal_use_cases": [
+    "standard_backgrounds",
+    "sky_to_ground",
+    "header_to_footer",
+    "depth_perception"
+  ],
+  "visual_weight": "medium",
+  "compatible_geometries": ["sharp", "round", "mixed", "minimal"],
+  "brand_personality_tags": ["clean", "modern", "straightforward", "professional"],
+  "metadata": {
+    "created_timestamp": "2025-11-14T00:00:00Z",
+    "version": "1.0.0",
+    "asset_type": "GRADIENT_BACKGROUND_DEFINITION"
+  }
+}
