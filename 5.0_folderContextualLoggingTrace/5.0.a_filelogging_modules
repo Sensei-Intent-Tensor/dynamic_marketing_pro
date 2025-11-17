@@ -1,1 +1,355 @@
+#!/usr/bin/env python3
+"""
+5.0.a_fileIntentExecutionTraceLogger.py
 
+INTENT EXECUTION TRACE LOGGER
+Revolutionary contextual logging - the log IS the commentary
+Function names + parameters = complete context
+NO SEPARATE COMMENTS NEEDED
+
+PRINCIPLE: Logger statements are self-documenting
+The log entry name + payload = full semantic context
+"Why hasn't anyone thought of this in 40 years?" - Achieved here.
+"""
+
+from typing import Dict, Any, List, Optional
+from datetime import datetime
+import json
+import traceback
+
+
+class IntentExecutionTraceLogger:
+    """
+    Contextual logging engine
+    Logs ARE documentation - function names carry complete intent
+    """
+    
+    def __init__(self):
+        self.execution_trace_log = []
+        self.error_trace_log = []
+        self.performance_trace_log = []
+        self.max_log_entries_in_memory = 10000
+    
+    def log_intent_execution_with_full_context_intent(
+        self,
+        intent_key: str,
+        execution_payload: Dict[str, Any],
+        execution_outcome: str,
+        executing_file_path: str,
+        authenticated_user_id: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        CONTEXTUAL LOGGING - The log entry IS the documentation
+        
+        Intent key = what happened
+        Payload = input data
+        Outcome = result
+        File path = where it happened
+        
+        NO COMMENTS NEEDED - The function name says it all
+        
+        Args:
+            intent_key: Intent glyph that was executed
+            execution_payload: Data passed to intent
+            execution_outcome: Result of execution
+            executing_file_path: Source file that executed intent
+            authenticated_user_id: User who triggered execution
+        
+        Returns:
+            Log entry metadata
+        """
+        log_timestamp = datetime.now().isoformat()
+        
+        log_entry = {
+            'timestamp': log_timestamp,
+            'intent_key': intent_key,
+            'execution_payload': execution_payload,
+            'execution_outcome': execution_outcome,
+            'executing_file_path': executing_file_path,
+            'authenticated_user_id': authenticated_user_id,
+            'stack_trace_context': traceback.format_stack()[-3:-1]
+        }
+        
+        self.execution_trace_log.append(log_entry)
+        
+        self._rotate_log_if_needed('execution')
+        
+        print(f"[INTENT_TRACE] {intent_key} | User: {authenticated_user_id} | Outcome: {execution_outcome}")
+        
+        return {
+            'log_entry_id': len(self.execution_trace_log) - 1,
+            'timestamp': log_timestamp,
+            'logged_successfully': True
+        }
+    
+    def log_intent_execution_error_with_full_trace_intent(
+        self,
+        intent_key: str,
+        error_message: str,
+        error_traceback: str,
+        execution_payload: Dict[str, Any],
+        executing_file_path: str,
+        authenticated_user_id: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        CONTEXTUAL ERROR LOGGING - Errors carry complete diagnostic context
+        
+        Every error log contains:
+        - What was being attempted (intent_key)
+        - What data caused it (execution_payload)
+        - Where it happened (file_path + stack trace)
+        - Who triggered it (user_id)
+        
+        Args:
+            intent_key: Intent that failed
+            error_message: Error description
+            error_traceback: Full stack trace
+            execution_payload: Data that caused error
+            executing_file_path: Source file
+            authenticated_user_id: User who triggered
+        
+        Returns:
+            Error log entry metadata
+        """
+        log_timestamp = datetime.now().isoformat()
+        
+        error_entry = {
+            'timestamp': log_timestamp,
+            'intent_key': intent_key,
+            'error_message': error_message,
+            'error_traceback': error_traceback,
+            'execution_payload': execution_payload,
+            'executing_file_path': executing_file_path,
+            'authenticated_user_id': authenticated_user_id,
+            'severity': 'ERROR'
+        }
+        
+        self.error_trace_log.append(error_entry)
+        
+        self._rotate_log_if_needed('error')
+        
+        print(f"[INTENT_ERROR] {intent_key} | User: {authenticated_user_id} | Error: {error_message}")
+        
+        return {
+            'error_log_entry_id': len(self.error_trace_log) - 1,
+            'timestamp': log_timestamp,
+            'logged_successfully': True
+        }
+    
+    def log_intent_performance_metrics_with_timing_intent(
+        self,
+        intent_key: str,
+        execution_duration_ms: float,
+        execution_payload_size_bytes: int,
+        resource_usage_metrics: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        """
+        CONTEXTUAL PERFORMANCE LOGGING - Performance data with full context
+        
+        Every performance log contains:
+        - What was measured (intent_key)
+        - How long it took (duration_ms)
+        - How much data was processed (payload_size)
+        - Resource usage (CPU, memory, etc.)
+        
+        Args:
+            intent_key: Intent being measured
+            execution_duration_ms: Execution time in milliseconds
+            execution_payload_size_bytes: Size of input data
+            resource_usage_metrics: CPU/memory/etc metrics
+        
+        Returns:
+            Performance log entry metadata
+        """
+        log_timestamp = datetime.now().isoformat()
+        
+        performance_entry = {
+            'timestamp': log_timestamp,
+            'intent_key': intent_key,
+            'execution_duration_ms': execution_duration_ms,
+            'execution_payload_size_bytes': execution_payload_size_bytes,
+            'resource_usage_metrics': resource_usage_metrics
+        }
+        
+        self.performance_trace_log.append(performance_entry)
+        
+        self._rotate_log_if_needed('performance')
+        
+        if execution_duration_ms > 1000:
+            print(f"[INTENT_PERF_SLOW] {intent_key} | Duration: {execution_duration_ms}ms | Size: {execution_payload_size_bytes}B")
+        
+        return {
+            'performance_log_entry_id': len(self.performance_trace_log) - 1,
+            'timestamp': log_timestamp,
+            'logged_successfully': True
+        }
+    
+    def _rotate_log_if_needed(self, log_type: str) -> None:
+        """
+        Rotate logs when max entries reached
+        Keeps memory usage bounded
+        
+        Args:
+            log_type: Type of log to rotate (execution, error, performance)
+        """
+        if log_type == 'execution':
+            if len(self.execution_trace_log) > self.max_log_entries_in_memory:
+                self.execution_trace_log = self.execution_trace_log[-self.max_log_entries_in_memory:]
+        
+        elif log_type == 'error':
+            if len(self.error_trace_log) > self.max_log_entries_in_memory:
+                self.error_trace_log = self.error_trace_log[-self.max_log_entries_in_memory:]
+        
+        elif log_type == 'performance':
+            if len(self.performance_trace_log) > self.max_log_entries_in_memory:
+                self.performance_trace_log = self.performance_trace_log[-self.max_log_entries_in_memory:]
+    
+    def get_recent_execution_trace_entries_intent(
+        self,
+        count: int = 100,
+        intent_key_filter: Optional[str] = None,
+        user_id_filter: Optional[str] = None
+    ) -> List[Dict[str, Any]]:
+        """
+        Retrieve recent execution log entries with optional filtering
+        
+        Args:
+            count: Number of entries to retrieve
+            intent_key_filter: Filter by intent key
+            user_id_filter: Filter by user ID
+        
+        Returns:
+            Filtered log entries
+        """
+        filtered_entries = self.execution_trace_log
+        
+        if intent_key_filter:
+            filtered_entries = [
+                entry for entry in filtered_entries
+                if entry['intent_key'] == intent_key_filter
+            ]
+        
+        if user_id_filter:
+            filtered_entries = [
+                entry for entry in filtered_entries
+                if entry.get('authenticated_user_id') == user_id_filter
+            ]
+        
+        return filtered_entries[-count:]
+    
+    def get_recent_error_trace_entries_intent(
+        self,
+        count: int = 100,
+        intent_key_filter: Optional[str] = None
+    ) -> List[Dict[str, Any]]:
+        """
+        Retrieve recent error log entries with optional filtering
+        
+        Args:
+            count: Number of entries to retrieve
+            intent_key_filter: Filter by intent key
+        
+        Returns:
+            Filtered error entries
+        """
+        filtered_entries = self.error_trace_log
+        
+        if intent_key_filter:
+            filtered_entries = [
+                entry for entry in filtered_entries
+                if entry['intent_key'] == intent_key_filter
+            ]
+        
+        return filtered_entries[-count:]
+    
+    def get_performance_statistics_by_intent_key(
+        self,
+        intent_key: str
+    ) -> Dict[str, Any]:
+        """
+        Calculate performance statistics for specific intent
+        
+        Args:
+            intent_key: Intent to analyze
+        
+        Returns:
+            Performance statistics
+        """
+        intent_entries = [
+            entry for entry in self.performance_trace_log
+            if entry['intent_key'] == intent_key
+        ]
+        
+        if not intent_entries:
+            return {
+                'intent_key': intent_key,
+                'execution_count': 0,
+                'statistics': None
+            }
+        
+        durations = [entry['execution_duration_ms'] for entry in intent_entries]
+        
+        return {
+            'intent_key': intent_key,
+            'execution_count': len(intent_entries),
+            'statistics': {
+                'min_duration_ms': min(durations),
+                'max_duration_ms': max(durations),
+                'avg_duration_ms': sum(durations) / len(durations),
+                'total_duration_ms': sum(durations)
+            }
+        }
+    
+    def export_logs_as_json_intent(
+        self,
+        log_types: List[str] = ['execution', 'error', 'performance']
+    ) -> str:
+        """
+        Export logs as JSON for external analysis
+        
+        Args:
+            log_types: Which log types to export
+        
+        Returns:
+            JSON string of logs
+        """
+        export_data = {}
+        
+        if 'execution' in log_types:
+            export_data['execution_trace'] = self.execution_trace_log
+        
+        if 'error' in log_types:
+            export_data['error_trace'] = self.error_trace_log
+        
+        if 'performance' in log_types:
+            export_data['performance_trace'] = self.performance_trace_log
+        
+        export_data['export_timestamp'] = datetime.now().isoformat()
+        
+        return json.dumps(export_data, indent=2, default=str)
+    
+    def get_logging_statistics_intent(self) -> Dict[str, Any]:
+        """
+        Get statistics about logging system
+        
+        Returns:
+            Logging statistics
+        """
+        return {
+            'execution_log_entries': len(self.execution_trace_log),
+            'error_log_entries': len(self.error_trace_log),
+            'performance_log_entries': len(self.performance_trace_log),
+            'max_entries_per_log': self.max_log_entries_in_memory,
+            'total_log_entries': len(self.execution_trace_log) + len(self.error_trace_log) + len(self.performance_trace_log)
+        }
+
+
+intent_execution_trace_logger_singleton = IntentExecutionTraceLogger()
+
+
+def get_intent_execution_trace_logger() -> IntentExecutionTraceLogger:
+    """
+    Accessor for intent execution trace logger
+    Ensures single source of truth for logging
+    """
+    return intent_execution_trace_logger_singleton
