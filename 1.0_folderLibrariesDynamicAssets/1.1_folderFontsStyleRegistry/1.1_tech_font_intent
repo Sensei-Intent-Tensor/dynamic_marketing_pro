@@ -1,0 +1,32 @@
+{
+  "font_intent_glyph_key": "tech_font_intent",
+  "font_family_primary": "Courier New, monospace",
+  "font_family_fallback": "Monaco, Consolas, monospace",
+  "font_weight_value": "bold",
+  "font_weight_numeric": 700,
+  "letter_spacing_value": "3px",
+  "text_transform": "uppercase",
+  "line_height_multiplier": 1.4,
+  "rendering_hints": {
+    "antialiasing": "antialiased",
+    "webkit_font_smoothing": "antialiased",
+    "moz_osx_font_smoothing": "grayscale"
+  },
+  "optimal_use_cases": [
+    "tech_companies",
+    "developer_tools",
+    "code_references",
+    "digital_products",
+    "startup_branding"
+  ],
+  "readability_minimum_size_px": 16,
+  "readability_maximum_size_px": 48,
+  "compatible_geometries": ["sharp", "minimal"],
+  "brand_personality_tags": ["technical", "precise", "digital", "modern", "developer"],
+  "accessibility_wcag_level": "AAA",
+  "metadata": {
+    "created_timestamp": "2025-11-14T00:00:00Z",
+    "version": "1.0.0",
+    "asset_type": "FONT_STYLE_DEFINITION"
+  }
+}
