@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Leaf Nature Icon - Eco/Organic/Natural/Sustainability Intent -->
+  <defs>
+    <metadata>
+      <intent_glyph>leaf_nature_icon</intent_glyph>
+      <semantic_tags>eco,organic,natural,sustainability,green,environment,health</semantic_tags>
+      <optimal_industries>organic,eco_products,wellness,sustainability,natural_foods</optimal_industries>
+      <asset_version>1.0.0</asset_version>
+    </metadata>
+  </defs>
+  
+  <!-- Leaf shape -->
+  <path d="M 32 8 
+           C 48 12 56 24 56 40 
+           C 56 48 52 56 32 56 
+           C 32 56 20 48 16 40 
+           C 12 32 16 16 32 8 
+           Z" 
+        fill="currentColor" 
+        opacity="0.9"/>
+  
+  <!-- Center vein -->
+  <line x1="32" y1="12" x2="32" y2="52" 
+        stroke="white" 
+        stroke-width="2" 
+        opacity="0.4"/>
+  
+  <!-- Left veins -->
+  <line x1="32" y1="20" x2="24" y2="28" 
+        stroke="white" 
+        stroke-width="1" 
+        opacity="0.3"/>
+  <line x1="32" y1="28" x2="22" y2="36" 
+        stroke="white" 
+        stroke-width="1" 
+        opacity="0.3"/>
+  <line x1="32" y1="36" x2="24" y2="44" 
+        stroke="white" 
+        stroke-width="1" 
+        opacity="0.3"/>
+  
+  <!-- Right veins -->
+  <line x1="32" y1="20" x2="40" y2="28" 
+        stroke="white" 
+        stroke-width="1" 
+        opacity="0.3"/>
+  <line x1="32" y1="28" x2="42" y2="36" 
+        stroke="white" 
+        stroke-width="1" 
+        opacity="0.3"/>
+  <line x1="32" y1="36" x2="40" y2="44" 
+        stroke="white" 
+        stroke-width="1" 
+        opacity="0.3"/>
+</svg>
