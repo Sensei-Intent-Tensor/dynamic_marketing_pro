@@ -1,0 +1,120 @@
+# 0.0.a_requirements_intent_manifest.txt
+# Dynamic Marketing Pro - Diamond Standard Architecture
+# Complete dependency manifest with version pinning for production stability
+
+# ============================================================================
+# CORE WEB FRAMEWORK
+# ============================================================================
+Flask==3.0.0
+# Lightweight WSGI web application framework
+# Used: 4.0.a_fileFlaskServerIntentRouter.py
+
+Flask-CORS==4.0.0
+# Cross-Origin Resource Sharing (CORS) handling for Flask
+# Enables API access from different domains
+
+Werkzeug==3.0.1
+# WSGI utility library (Flask dependency)
+# Provides routing, debugging, and serving capabilities
+
+# ============================================================================
+# IMAGE PROCESSING & RENDERING
+# ============================================================================
+Pillow==10.1.0
+# Python Imaging Library (PIL) fork
+# Used: 4.0.c_fileGIFCompositorOutputEngine.py
+# Purpose: PNG → GIF conversion, image manipulation
+
+CairoSVG==2.7.1
+# SVG to PNG/PDF converter using Cairo graphics library
+# Used: 4.0.c_fileGIFCompositorOutputEngine.py
+# Purpose: SVG → PNG rasterization
+
+cairocffi==1.6.1
+# Python bindings for Cairo graphics library
+# CairoSVG dependency
+
+cffi==1.16.0
+# C Foreign Function Interface for Python
+# cairocffi dependency
+
+# ============================================================================
+# DATA VALIDATION & PARSING
+# ============================================================================
+# All validation handled by custom ghostless engines:
+# - 2.0.f_fileParameterWritableValidatorIntentGate.py
+# - 4.0.b_fileParameterParserIntentResolver.py
+
+# ============================================================================
+# OPTIONAL: PRODUCTION DEPLOYMENT
+# ============================================================================
+gunicorn==21.2.0
+# Python WSGI HTTP Server for UNIX
+# Production-grade server (optional, alternative to Flask dev server)
+# Usage: gunicorn -w 4 -b 0.0.0.0:5000 server_main:app
+
+# ============================================================================
+# OPTIONAL: HOT RELOAD FILE WATCHING (DEVELOPMENT)
+# ============================================================================
+watchdog==3.0.0
+# Python library for monitoring file system events
+# Used: 3.0.c_fileLibraryHotReloadWatcher.py (if hot reload enabled)
+# Note: Built-in file checking used by default, watchdog adds performance
+
+# ============================================================================
+# SYSTEM REQUIREMENTS (NOT PYTHON PACKAGES)
+# ============================================================================
+# These must be installed at system level:
+#
+# Cairo graphics library:
+#   Ubuntu/Debian: sudo apt-get install libcairo2-dev
+#   macOS: brew install cairo
+#   Windows: Download from cairographics.org
+#
+# Python development headers:
+#   Ubuntu/Debian: sudo apt-get install python3-dev
+#   macOS: included with Xcode Command Line Tools
+#   Windows: included with Python installer
+
+# ============================================================================
+# INSTALLATION INSTRUCTIONS
+# ============================================================================
+# Standard installation:
+#   pip install -r 0.0.a_requirements_intent_manifest.txt
+#
+# With development tools:
+#   pip install -r 0.0.a_requirements_intent_manifest.txt
+#   pip install watchdog
+#
+# Production deployment:
+#   pip install -r 0.0.a_requirements_intent_manifest.txt
+#   pip install gunicorn
+
+# ============================================================================
+# VERSION COMPATIBILITY
+# ============================================================================
+# Python Version: 3.9+
+# Tested on: Python 3.9, 3.10, 3.11
+# Platform: Linux, macOS, Windows
+
+# ============================================================================
+# SECURITY NOTES
+# ============================================================================
+# All dependencies pinned to specific versions for:
+# - Reproducible builds
+# - Security audit trail
+# - Diamond Standard compliance
+#
+# Update policy:
+# - Review dependencies quarterly
+# - Test updates in staging before production
+# - Maintain changelog of dependency updates
+
+# ============================================================================
+# DIAMOND STANDARD COMPLIANCE
+# ============================================================================
+# This requirements file follows ghostless principles:
+# - Clear version pinning (no ambiguity)
+# - Explicit purpose documentation (contextual comments)
+# - Minimal dependencies (only what's needed)
+# - Production-ready (tested, stable versions)
